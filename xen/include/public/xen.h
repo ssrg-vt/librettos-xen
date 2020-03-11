@@ -131,6 +131,8 @@ DEFINE_XEN_GUEST_HANDLE(xen_ulong_t);
 #define __HYPERVISOR_xenpmu_op            40
 #define __HYPERVISOR_dm_op                41
 #define __HYPERVISOR_hypfs_op             42
+#define __HYPERVISOR_rumprun_service_op	  42
+#define __HYPERVISOR_rumprun_port_bind	  43
 
 /* Architecture-specific hypercall definitions. */
 #define __HYPERVISOR_arch_0               48
@@ -580,6 +582,8 @@ DEFINE_XEN_GUEST_HANDLE(mmuext_op_t);
 
 /* DOMID_SELF is used in certain contexts to refer to oneself. */
 #define DOMID_SELF           xen_mk_uint(0x7FF0)
+
+#define DOMID_BACKEND        xen_mk_uint(0x7FFA)
 
 /*
  * DOMID_IO is used to restrict page-table updates to mapping I/O memory.

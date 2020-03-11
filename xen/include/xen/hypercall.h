@@ -7,6 +7,7 @@
 
 #include <xen/types.h>
 #include <xen/time.h>
+#include <xen/rumprun_service.h>
 #include <public/xen.h>
 #include <public/domctl.h>
 #include <public/sysctl.h>
@@ -128,6 +129,12 @@ do_kexec_op(
 extern long
 do_xsm_op(
     XEN_GUEST_HANDLE_PARAM(xsm_op_t) u_xsm_op);
+
+extern int
+do_rumprun_service_op(int op, int sysid, XEN_GUEST_HANDLE(void) ptr);
+
+extern int
+do_rumprun_port_bind(int sysid, XEN_GUEST_HANDLE_PARAM(uint16) port, uint8_t protocol);
 
 #ifdef CONFIG_ARGO
 extern long do_argo_op(

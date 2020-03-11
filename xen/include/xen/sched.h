@@ -514,6 +514,11 @@ struct domain
 #endif
 };
 
+#define XEN_NETDOM_ORDER 8
+#define XEN_NETDOM_PAGES (1U << XEN_NETDOM_ORDER)
+
+extern domid_t *xen_netdom_map;
+
 static inline struct page_list_head *page_to_list(
     struct domain *d, const struct page_info *pg)
 {

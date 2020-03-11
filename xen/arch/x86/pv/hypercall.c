@@ -90,6 +90,8 @@ const hypercall_table_t pv_hypercall_table[] = {
 #endif
     HYPERCALL(mca),
     HYPERCALL(arch_1),
+    HYPERCALL(rumprun_service_op),
+    HYPERCALL(rumprun_port_bind),
 };
 
 #undef do_arch_1

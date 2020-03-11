@@ -153,7 +153,9 @@ static const hypercall_table_t hvm_hypercall_table[] = {
 #ifdef CONFIG_HYPFS
     HYPERCALL(hypfs_op),
 #endif
-    HYPERCALL(arch_1)
+    HYPERCALL(arch_1),
+    HYPERCALL(rumprun_service_op),
+    HYPERCALL(rumprun_port_bind)
 };
 
 #undef do_arch_1
