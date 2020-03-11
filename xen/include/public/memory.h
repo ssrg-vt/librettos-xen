@@ -227,6 +227,7 @@ DEFINE_XEN_GUEST_HANDLE(xen_machphys_mapping_t);
                                       Stage-2 using the Normal Memory
                                       Inner/Outer Write-Back Cacheable
                                       memory attribute. */
+#define XENMAPSPACE_netdom       6 /* network domain map */
 /* ` } */
 
 /*

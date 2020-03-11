@@ -579,6 +579,17 @@ static inline bool using_2M_mapping(void)
            !l1_table_offset((unsigned long)__2M_rwdata_end);
 }
 
+domid_t *xen_netdom_map = NULL;
+
+static void init_netdom_map(void)
+{
+    /* Allocate network domain pages. */
+    if ( (xen_netdom_map = alloc_xenheap_pages(XEN_NETDOM_ORDER,
+        MEMF_bits(32))) == NULL )
+            panic("Could not allocate network domain pages.");
+    memset(xen_netdom_map, 0xFF, PAGE_SIZE * XEN_NETDOM_PAGES);
+}
+
 static void noinline init_done(void)
 {
     void *va;
@@ -1745,6 +1756,8 @@ void __init noreturn __start_xen(unsigned long mbi_p)
     dmi_end_boot();
 
     setup_io_bitmap(dom0);
+
+    init_netdom_map();
 
     /* Jump to the 1:1 virtual mappings of cpu0_stack. */
     asm volatile ("mov %[stk], %%rsp; jmp %c[fn]" ::

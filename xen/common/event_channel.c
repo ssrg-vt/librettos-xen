@@ -323,8 +323,10 @@ static long evtchn_bind_interdomain(evtchn_bind_interdomain_t *bind)
     rchn = evtchn_from_port(rd, rport);
     if ( (rchn->state != ECS_UNBOUND) ||
          (rchn->u.unbound.remote_domid != ld->domain_id) )
-        ERROR_EXIT_DOM(-EINVAL, rd);
-
+	{
+		if (rchn->u.unbound.remote_domid != DOMID_BACKEND)
+			ERROR_EXIT_DOM(-EINVAL, rd);
+	}
     rc = xsm_evtchn_interdomain(XSM_HOOK, ld, lchn, rd, rchn);
     if ( rc )
         goto out;

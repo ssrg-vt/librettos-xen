@@ -132,7 +132,9 @@ static const hypercall_table_t hvm_hypercall_table[] = {
     COMPAT_CALL(mmuext_op),
     HYPERCALL(xenpmu_op),
     COMPAT_CALL(dm_op),
-    HYPERCALL(arch_1)
+    HYPERCALL(arch_1),
+    HYPERCALL(rumprun_service_op),
+    HYPERCALL(rumprun_port_bind)
 };
 
 #undef do_arch_1

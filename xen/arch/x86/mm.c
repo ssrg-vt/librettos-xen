@@ -4122,6 +4122,11 @@ int xenmem_add_to_physmap_one(
 
     switch ( space )
     {
+        case XENMAPSPACE_netdom:
+            if ( idx < XEN_NETDOM_PAGES )
+                mfn = _mfn(virt_to_mfn((char *)xen_netdom_map +
+                             idx * PAGE_SIZE));
+            break;
         case XENMAPSPACE_shared_info:
             if ( idx == 0 )
                 mfn = _mfn(virt_to_mfn(d->shared_info));

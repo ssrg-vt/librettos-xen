@@ -486,6 +486,11 @@ struct domain
     } monitor;
 };
 
+#define XEN_NETDOM_ORDER 8
+#define XEN_NETDOM_PAGES (1U << XEN_NETDOM_ORDER)
+
+extern domid_t *xen_netdom_map;
+
 /* Protect updates/reads (resp.) of domain_list and domain_hash. */
 extern spinlock_t domlist_update_lock;
 extern rcu_read_lock_t domlist_read_lock;
