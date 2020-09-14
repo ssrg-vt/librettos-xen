@@ -4521,8 +4521,8 @@ int xenmem_add_to_physmap_one(
     {
         case XENMAPSPACE_netdom:
             if ( idx < XEN_NETDOM_PAGES )
-                mfn = _mfn(virt_to_mfn((char *)xen_netdom_map +
-                             idx * PAGE_SIZE));
+                mfn = virt_to_mfn((char *)xen_netdom_map +
+                             idx * PAGE_SIZE);
             break;
         case XENMAPSPACE_shared_info:
             if ( idx == 0 )
@@ -4587,7 +4587,7 @@ int xenmem_add_to_physmap_one(
         rc = -EXDEV;
         goto put_both;
     }
-    if ( old_gpfn != INVALID_M2P_ENTRY )
+    if ( space != XENMAPSPACE_netdom && old_gpfn != INVALID_M2P_ENTRY )
         rc = guest_physmap_remove_page(d, _gfn(old_gpfn), mfn, PAGE_ORDER_4K);
 
     /* Map at new location. */
